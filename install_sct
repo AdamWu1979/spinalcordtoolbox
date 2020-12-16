@@ -533,8 +533,11 @@ run "bash $TMP_DIR/miniconda.sh -p $SCT_DIR/$PYTHON_DIR -b -f"
 yes | python/bin/conda create -n venv_sct python=3.6
 
 # activate miniconda
+set +uef #disable safeties, for conda is not written to their standard.
 source python/etc/profile.d/conda.sh
 conda activate venv_sct
+set -euf # reactivate safeties
+
 
 # Install Python dependencies
 print info "Installing Python dependencies..."
